@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
+    <title>farcotton.org - Personal Portfolio</title>
+    <meta name="description" content="Personal portfolio of a passionate developer and Linux enthusiast. Explore my interests in Gentoo Linux, programming, and technology.">
+    <style>
+      /* Retro/Emo Theme Override */
+      :root {
+        /* Primary purple accent */
+        --primary: 247 19% 45%;
+        --ring: 247 19% 45%;
+        --sidebar-primary: 247 19% 45%;
+        --primary-foreground: 0 0% 98%;
+        
+        /* Retro pastels */
+        --accent: 248 38% 77%;
+        --accent-foreground: 247 19% 25%;
+        --muted: 260 20% 97%;
+        --muted-foreground: 247 19% 35%;
+        
+        /* Card with cream tint */
+        --card: 260 20% 97%;
+        --card-foreground: 247 19% 15%;
+        --card-border: 247 15% 85%;
+      }
+
+      .dark {
+        --primary: 247 19% 55%;
+        --ring: 247 19% 55%;
+        --sidebar-primary: 247 19% 55%;
+        --primary-foreground: 255 16% 11%;
+        
+        /* Dark mode pastels */
+        --accent: 247 25% 25%;
+        --accent-foreground: 248 38% 77%;
+        --muted: 255 16% 15%;
+        --muted-foreground: 247 19% 65%;
+        
+        /* Darker card with purple tint */
+        --card: 255 16% 13%;
+        --card-foreground: 248 38% 85%;
+        --card-border: 247 19% 22%;
+      }
+
+      /* Floral background pattern */
+      .bg-floral {
+        background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='hsl(247 19% 35% / 0.08)' stroke-width='1'%3E%3Cpath d='M16 4c0 4-4 8-8 8s-8-4-8-8 4-8 8-8 8 4 8 8z'/%3E%3Cpath d='M32 16c-4 0-8-4-8-8s4-8 8-8'/%3E%3Cpath d='M16 28c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8z'/%3E%3Cpath d='M0 16c4 0 8 4 8 8s-4 8-8 8'/%3E%3C/g%3E%3C/svg%3E");
+        background-size: 32px 32px;
+      }
+
+      .dark .bg-floral {
+        background-image: url("data:image/svg+xml,%3Csvg width='32' height='32' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='hsl(247 19% 65% / 0.06)' stroke-width='1'%3E%3Cpath d='M16 4c0 4-4 8-8 8s-8-4-8-8 4-8 8-8 8 4 8 8z'/%3E%3Cpath d='M32 16c-4 0-8-4-8-8s4-8 8-8'/%3E%3Cpath d='M16 28c0-4 4-8 8-8s8 4 8 8-4 8-8 8-8-4-8-8z'/%3E%3Cpath d='M0 16c4 0 8 4 8 8s-4 8-8 8'/%3E%3C/g%3E%3C/svg%3E");
+      }
+
+      /* Scalloped separator */
+      .scallop-separator {
+        height: 24px;
+        background: hsl(var(--card));
+        -webkit-mask-image: radial-gradient(circle 12px at 12px 12px, transparent 10px, black 10px);
+                mask-image: radial-gradient(circle 12px at 12px 12px, transparent 10px, black 10px);
+        -webkit-mask-repeat: repeat-x;
+                mask-repeat: repeat-x;
+        -webkit-mask-size: 24px 24px;
+                mask-size: 24px 24px;
+      }
+
+      /* Floral corner decorations */
+      .floral-corners::before,
+      .floral-corners::after {
+        content: "✿";
+        position: absolute;
+        font-size: 1.2rem;
+        color: hsl(var(--accent-foreground) / 0.4);
+        pointer-events: none;
+      }
+      
+      .floral-corners::before {
+        top: 0.5rem;
+        left: 0.5rem;
+      }
+      
+      .floral-corners::after {
+        bottom: 0.5rem;
+        right: 0.5rem;
+      }
+
+      /* Polaroid-style avatar */
+      .polaroid-frame {
+        background: white;
+        padding: 0.75rem 0.75rem 3rem 0.75rem;
+        transform: rotate(-2deg);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+        position: relative;
+      }
+
+      .dark .polaroid-frame {
+        background: hsl(260 20% 95%);
+      }
+
+      /* Tape corners */
+      .tape-corner::before,
+      .tape-corner::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        transform: rotate(45deg);
+        border: 1px solid rgba(0,0,0,0.1);
+      }
+
+      .tape-corner::before {
+        top: -10px;
+        left: -10px;
+      }
+
+      .tape-corner::after {
+        top: -10px;
+        right: -10px;
+      }
+
+      /* Sticker-style badges */
+      .sticker-badge {
+        border: 2px dotted hsl(var(--accent-foreground) / 0.3);
+        border-radius: 12px;
+        background: hsl(var(--accent) / 0.6);
+      }
+
+      /* Vine accent for section headers */
+      .vine-accent::before {
+        content: "";
+        position: absolute;
+        left: -1rem;
+        top: 0;
+        bottom: 0;
+        width: 3px;
+        background: linear-gradient(to bottom, 
+          hsl(var(--primary)) 0%, 
+          hsl(var(--accent-foreground)) 50%, 
+          hsl(var(--primary)) 100%);
+        border-radius: 2px;
+      }
+    </style>
+    <script type="module" crossorigin src="/assets/index-B6NyFMhO.js"></script>
+    <link rel="stylesheet" crossorigin href="/assets/index-DBo920wh.css">
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
